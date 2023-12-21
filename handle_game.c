@@ -17,11 +17,22 @@ static int init_curse(void)
     return 0;
 }
 
+static int check_window(char *map)
+{
+    int i = 0;
+
+    for (; map[i]; i++);
+
+    return 0;
+}
+
 static int loop_inside(char *map, int ch, char *base_map, int end_code)
 {
     ch = getch();
     if (ch == 'q')
         return 1;
+    if (ch == ' ')
+        my_strcpy(map, base_map);
     if (ch == KEY_LEFT)
         move_player(map, -1, 0, base_map);
     if (ch == KEY_RIGHT)

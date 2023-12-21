@@ -18,13 +18,17 @@ static bool handle_win(char *map, char *base_map)
 
 static bool check_is_blocked(char *map, int i)
 {
-    if (map[i + 1] == '#' && map[find_y(map, i, 1)] == '#')
+    if ((map[i + 1] == '#' || map[i + 1] == 'X')
+        && (map[find_y(map, i, 1)] == '#' || map[find_y(map, i, 1)] == 'X'))
         return true;
-    if (map[i + 1] == '#' && map[find_y(map, i, -1)] == '#')
+    if ((map[i + 1] == '#' || map[i + 1] == 'X')
+        && (map[find_y(map, i, -1)] == '#' || map[find_y(map, i, -1)] == 'X'))
         return true;
-    if (map[i - 1] == '#' && map[find_y(map, i, -1)] == '#')
+    if ((map[i - 1] == '#' || map[i - 1] == 'X')
+        && (map[find_y(map, i, -1)] == '#' || map[find_y(map, i, -1)] == 'X'))
         return true;
-    if (map[i - 1] == '#' && map[find_y(map, i, 1)] == '#')
+    if ((map[i - 1] == '#' || map[i - 1] == 'X')
+        && (map[find_y(map, i, 1)] == '#' || map[find_y(map, i, 1)] == 'X'))
         return true;
     return false;
 }
