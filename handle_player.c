@@ -29,16 +29,19 @@ static int move_y(char *map, int dy)
 {
     int id = find_player(map);
     int i = id;
-    int j = i;
+    int j = 0;
+    int to = 0;
 
-    for (; i >= 0 && map[i] != '\n'; i--);
-    j = i - 1;
-    for (; j >= 0 && map[j] != '\n'; j--);
-    j += j != 0;
-    if (map[j + id - i] != ' ')
+    for (; i > 0 && map[i - 1] != '\n'; i--);
+    if (dy < 0)
+        for (j = i - 1; j > 0 && map[j - 1] != '\n'; j--);
+    if (dy > 0)
+        for (j = i + 1; map[j - 1] && map[j - 1] != '\n'; j++);
+    to = id + j - i;
+    if (map[to] != ' ' || dy == 0)
         return 0;
+    map[to] = 'P';
     map[id] = ' ';
-    map[j + id - i] = 'P';
     return 0;
 }
 
@@ -48,6 +51,5 @@ int move_player(char *map, int dx, int dy)
         move_x(map, dx);
     if (dy)
         move_y(map, dy);
-    printf("%d\n", find_player(map));
     return 0;
 }

@@ -30,6 +30,7 @@ static int loop_inside(char *map, int ch)
         move_player(map, 0, -1);
     if (ch == KEY_DOWN)
         move_player(map, 0, 1);
+    mvprintw(0, 0, map);
     return 0;
 }
 
