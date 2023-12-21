@@ -23,13 +23,13 @@ static int loop_inside(char *map, int ch, char *base_map, int end_code)
     if (ch == 'q')
         return 1;
     if (ch == KEY_LEFT)
-        move_player(map, -1, 0);
+        move_player(map, -1, 0, base_map);
     if (ch == KEY_RIGHT)
-        move_player(map, 1, 0);
+        move_player(map, 1, 0, base_map);
     if (ch == KEY_UP)
-        move_player(map, 0, -1);
+        move_player(map, 0, -1, base_map);
     if (ch == KEY_DOWN)
-        move_player(map, 0, 1);
+        move_player(map, 0, 1, base_map);
     mvprintw(0, 0, map);
     end_code = handle_end(map, base_map);
     return end_code;

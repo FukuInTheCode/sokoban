@@ -42,7 +42,7 @@ char *my_strdup(char const *);
 char *my_strcpy(char *, char const *);
 int handle_game(char *);
 int handle_end(char *, char *);
-int move_player(char *, int, int);
+int move_player(char *, int, int, char *);
 
 static inline int my_free(void *obj)
 {
