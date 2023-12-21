@@ -32,7 +32,7 @@ static int loop_inside(char *map, int ch, char *base_map, int end_code)
         move_player(map, 0, 1);
     mvprintw(0, 0, map);
     end_code = handle_end(map, base_map);
-    return end_code - (end_code != 0);
+    return end_code;
 }
 
 int handle_game(char *map)
@@ -43,10 +43,12 @@ int handle_game(char *map)
     if (!base_map)
         return 84;
     init_curse();
-    while (1)
-        if (loop_inside(map, 0, base_map, 0))
+    while (1) {
+        error = loop_inside(map, 0, base_map, 0);
+        if (error)
             break;
+    }
     endwin();
     free(base_map);
-    return error;
+    return error - (error == 1 || error == 2);
 }
