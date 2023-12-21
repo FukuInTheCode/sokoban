@@ -34,7 +34,6 @@ static int verify_map(char *map)
         error |= 84 * (map[i] != '#' && map[i] != ' ' && map[i] != 'O' &&
             map[i] != 'X' && map[i] != '\n' && map[i] != 'P');
     error |= verify_containing(map);
-    error |= verify_wall(map);
     return error;
 }
 
