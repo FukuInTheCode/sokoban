@@ -17,7 +17,7 @@ static int init_curse(void)
     return 0;
 }
 
-static int loop_inside(char *map, int ch)
+static int loop_inside(char *map, int ch, char *base_map, int end_code)
 {
     ch = getch();
     if (ch == 'q')
@@ -31,17 +31,22 @@ static int loop_inside(char *map, int ch)
     if (ch == KEY_DOWN)
         move_player(map, 0, 1);
     mvprintw(0, 0, map);
-    return 0;
+    end_code = handle_end(map, base_map);
+    return end_code - (end_code != 0);
 }
 
 int handle_game(char *map)
 {
     int error = 0;
+    char *base_map = my_strdup(map);
 
+    if (!base_map)
+        return 84;
     init_curse();
     while (1)
-        if (loop_inside(map, 0))
+        if (loop_inside(map, 0, base_map, 0))
             break;
     endwin();
+    free(base_map);
     return error;
 }

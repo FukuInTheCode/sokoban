@@ -21,6 +21,8 @@ LIBS = -lcurses
 
 SRC	= my_sokoban.c \
 		my_strlen.c \
+		my_strcpy.c \
+		my_strdup.c \
 		handle_game.c \
 		handle_end.c \
 		handle_player.c \
