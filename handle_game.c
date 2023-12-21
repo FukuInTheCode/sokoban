@@ -39,7 +39,7 @@ int handle_game(char *map)
     int error = 0;
 
     init_curse();
-    while(1)
+    while (1)
         if (loop_inside(map, 0))
             break;
     endwin();

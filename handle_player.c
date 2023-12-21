@@ -10,6 +10,7 @@
 static int find_player(char *map)
 {
     int id = 0;
+
     for (; map[id] != 'P'; id++);
     return id;
 }
@@ -32,11 +33,14 @@ static int move_y(char *map, int dy)
     int j = 0;
     int to = 0;
 
-    for (; i > 0 && map[i - 1] != '\n'; i--);
+    for (; i > 0 && map[i - 1] != '\n';)
+        i--;
     if (dy < 0)
-        for (j = i - 1; j > 0 && map[j - 1] != '\n'; j--);
+        for (j = i - 1; j > 0 && map[j - 1] != '\n';)
+            j--;
     if (dy > 0)
-        for (j = i + 1; map[j - 1] && map[j - 1] != '\n'; j++);
+        for (j = i + 1; map[j - 1] && map[j - 1] != '\n';)
+            j++;
     to = id + j - i;
     if (map[to] != ' ' || dy == 0)
         return 0;
