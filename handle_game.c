@@ -35,6 +35,7 @@ static int loop_inside(char *map, int ch, char *base_map, int end_code)
     if (ch == KEY_DOWN)
         has_move = move_player(map, 0, 1, base_map);
     has_move && mvprintw(0, 0, map);
+    refresh();
     end_code = handle_end(map, base_map);
     return end_code;
 }
