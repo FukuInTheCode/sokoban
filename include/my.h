@@ -50,4 +50,20 @@ static inline int my_free(void *obj)
     return 0;
 }
 
+static inline __attribute__((unused)) int find_y(char *map, int id, int dy)
+{
+    int i = id;
+    int j = 0;
+
+    for (; i > 0 && map[i - 1] != '\n';)
+        i--;
+    if (dy < 0)
+        for (j = i - 1; j > 0 && map[j - 1] != '\n';)
+            j--;
+    if (dy > 0)
+        for (j = i + 1; map[j - 1] && map[j - 1] != '\n';)
+            j++;
+    return id + j - i;
+}
+
 #endif

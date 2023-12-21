@@ -29,19 +29,8 @@ static int move_x(char *map, int dx)
 static int move_y(char *map, int dy)
 {
     int id = find_player(map);
-    int i = id;
-    int j = 0;
-    int to = 0;
+    int to = find_y(map, id, dy);
 
-    for (; i > 0 && map[i - 1] != '\n';)
-        i--;
-    if (dy < 0)
-        for (j = i - 1; j > 0 && map[j - 1] != '\n';)
-            j--;
-    if (dy > 0)
-        for (j = i + 1; map[j - 1] && map[j - 1] != '\n';)
-            j++;
-    to = id + j - i;
     if (map[to] != ' ' || dy == 0)
         return 0;
     map[to] = 'P';
