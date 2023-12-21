@@ -62,7 +62,7 @@ static int move_x(char *map, int dx, char *base_map)
     map[id] = base_map[id];
     if (base_map[id] != 'O')
         map[id] = ' ';
-    return 0;
+    return 1;
 }
 
 static int move_y(char *map, int dy, char *base_map)
@@ -80,14 +80,14 @@ static int move_y(char *map, int dy, char *base_map)
     map[id] = base_map[id];
     if (base_map[id] != 'O')
         map[id] = ' ';
-    return 0;
+    return 1;
 }
 
 int move_player(char *map, int dx, int dy, char *base_map)
 {
     if (dx)
-        move_x(map, dx, base_map);
+        return move_x(map, dx, base_map);
     if (dy)
-        move_y(map, dy, base_map);
+        return move_y(map, dy, base_map);
     return 0;
 }

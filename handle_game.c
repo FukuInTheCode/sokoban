@@ -7,31 +7,34 @@
 
 #include "my.h"
 
-static int init_curse(void)
+static int init_curse(char *map)
 {
     initscr();
     noecho();
     keypad(stdscr, TRUE);
     nodelay(stdscr, TRUE);
+    mvprintw(0, 0, map);
     return 0;
 }
 
 static int loop_inside(char *map, int ch, char *base_map, int end_code)
 {
+    int has_move = 0;
+
     ch = getch();
     if (ch == 'q')
         return 1;
     if (ch == ' ')
-        my_strcpy(map, base_map);
+        has_move = (int)my_strcpy(map, base_map) * 0 + 1;
     if (ch == KEY_LEFT)
-        move_player(map, -1, 0, base_map);
+        has_move = move_player(map, -1, 0, base_map);
     if (ch == KEY_RIGHT)
-        move_player(map, 1, 0, base_map);
+        has_move = move_player(map, 1, 0, base_map);
     if (ch == KEY_UP)
-        move_player(map, 0, -1, base_map);
+        has_move = move_player(map, 0, -1, base_map);
     if (ch == KEY_DOWN)
-        move_player(map, 0, 1, base_map);
-    mvprintw(0, 0, map);
+        has_move = move_player(map, 0, 1, base_map);
+    has_move && mvprintw(0, 0, map);
     end_code = handle_end(map, base_map);
     return end_code;
 }
@@ -43,7 +46,7 @@ int handle_game(char *map)
 
     if (!base_map)
         return 84;
-    init_curse();
+    init_curse(map);
     while (1) {
         error = loop_inside(map, 0, base_map, 0);
         if (error)

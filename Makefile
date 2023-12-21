@@ -10,7 +10,7 @@ NAME   = my_sokoban
 CC	   = gcc
 
 CFLAGS = -Wall -Wextra -Wno-unused-value -Wno-sign-compare \
-	-Wno-unused-parameter -I./include
+	-Wno-unused-parameter -I./include -Wno-pointer-to-int-cast
 
 CSFML = -lcsfml-system -lcsfml-window -lcsfml-network \
 			-lcsfml-graphics -lcsfml-audio
