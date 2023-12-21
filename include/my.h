@@ -22,7 +22,7 @@
     #include <sys/sysmacros.h>
     #include <dirent.h>
     #include <pwd.h>
-    #include <ncurses.h>
+    #include <curses.h>
     #include <grp.h>
     #include <criterion/criterion.h>
     #include <criterion/redirect.h>
@@ -36,6 +36,6 @@
     #include <SFML/System.h>
     #include <SFML/Window.h>
 
-    #include "../lib/my_printf/include/my.h"
+size_t my_strlen(char const *);
 
 #endif
