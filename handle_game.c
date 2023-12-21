@@ -6,7 +6,6 @@
 */
 
 #include "my.h"
-#include <curses.h>
 
 static int init_curse(void)
 {
@@ -14,15 +13,6 @@ static int init_curse(void)
     noecho();
     keypad(stdscr, TRUE);
     nodelay(stdscr, TRUE);
-    return 0;
-}
-
-static int check_window(char *map)
-{
-    int i = 0;
-
-    for (; map[i]; i++);
-
     return 0;
 }
 

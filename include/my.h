@@ -50,6 +50,21 @@ static inline int my_free(void *obj)
     return 0;
 }
 
+static inline __attribute__((unused)) int check_to(char *map, int id, int to)
+{
+    int new_line = 0;
+
+    if (id > to)
+        for (int i = to + 1; map[i] && i < id; i++)
+            new_line += map[i] == '\n';
+    if (id < to)
+        for (int i = id + 1; map[i] && i < to; i++)
+            new_line += map[i] == '\n';
+    if (new_line != 1)
+        return 1;
+    return 0;
+}
+
 static inline __attribute__((unused)) int find_y(char *map, int id, int dy)
 {
     int i = id;
@@ -63,6 +78,8 @@ static inline __attribute__((unused)) int find_y(char *map, int id, int dy)
     if (dy > 0)
         for (j = i + 1; map[j - 1] && map[j - 1] != '\n';)
             j++;
+    if (check_to(map, id, id + j - i))
+        return id;
     return id + j - i;
 }
 
