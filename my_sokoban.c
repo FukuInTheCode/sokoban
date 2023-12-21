@@ -6,6 +6,7 @@
 */
 
 #include "my.h"
+#include <fcntl.h>
 
 static int verify_containing(char *map)
 {
@@ -60,12 +61,28 @@ static int read_file(char const *path)
     return error + my_free(buf);
 }
 
+static int sokoban_usage(void)
+{
+    int fd = open("./help.txt", O_RDONLY);
+    char buf[1001] = {0};
+
+    if (fd < 0)
+        return 84;
+    if (read(fd, buf, 1000) < 0)
+        return 84;
+    write(0, buf, my_strlen(buf));
+    close(fd);
+    return 0;
+}
+
 int main(int argc, char **argv)
 {
     int error = 0;
 
     if (argc != 2)
         return 84;
+    if (argv[1][0] == '-' && argv[1][1] == 'h')
+        return sokoban_usage();
     error |= read_file(argv[1]);
     return error;
 }
