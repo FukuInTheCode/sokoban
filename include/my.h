@@ -36,6 +36,15 @@
     #include <SFML/System.h>
     #include <SFML/Window.h>
 
+
 size_t my_strlen(char const *);
+int handle_game(char *);
+int move_player(char *, int, int);
+
+static inline int my_free(void *obj)
+{
+    free(obj);
+    return 0;
+}
 
 #endif

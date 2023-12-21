@@ -21,6 +21,9 @@ LIBS = -lcurses
 
 SRC	= my_sokoban.c \
 		my_strlen.c \
+		handle_game.c \
+		handle_end.c \
+		handle_player.c \
 
 OBJ	= $(SRC:.c=.o)
 

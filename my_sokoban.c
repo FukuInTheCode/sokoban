@@ -53,10 +53,11 @@ static int read_file(char const *path)
     for (int64_t len = read(fd, buf + my_strlen(buf),
         s.st_size - my_strlen(buf)); len > 0;
         len = read(fd, buf + my_strlen(buf), s.st_size - my_strlen(buf)));
-    printf("%s\n", buf);
     error |= verify_map(buf);
-    free(buf);
-    return error;
+    if (error)
+        return error + my_free(buf);
+    error |= handle_game(buf);
+    return error + my_free(buf);
 }
 
 int main(int argc, char **argv)
